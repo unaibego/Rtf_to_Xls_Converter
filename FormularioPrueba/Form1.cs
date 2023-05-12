@@ -89,6 +89,7 @@ namespace FormularioPrueba
                             await Task.Delay(1);
                         }
                     }
+                    loader.workbook.SaveToFile(loader.outFilePath, ExcelVersion.Version2013); //estos guardados son redundantes pero es para evitar que a veces no se guarde bien
                     await Task.Delay(5000);
                     this.Invoke((MethodInvoker)delegate
                     {

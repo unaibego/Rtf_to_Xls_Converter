@@ -8,10 +8,10 @@ namespace FormularioPrueba
 {
     class CopyBody
     {
-        private Workbook workbook;
+        public Workbook workbook;
         private Worksheet worksheet;
         private int yStart = 6;
-        private string outFilePath;
+        public string outFilePath;
         public CopyBody(OpenFiles loader)
         {
             worksheet = loader.worksheet;
