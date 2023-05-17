@@ -96,8 +96,6 @@ namespace ConversorRTF
             if (!xlsName.EndsWith(".xlsx"))
                 xlsName = xlsName + ".xlsx";
             int dotIndex = xlsName.LastIndexOf('.');
-            Console.WriteLine(xlsName);
-            Console.WriteLine(dotIndex);
             string fechaHoraActualStr = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             fechaHoraActualStr = fechaHoraActualStr.Replace(":", "-");
             fechaHoraActualStr = fechaHoraActualStr.Replace(" ", "_");

@@ -61,7 +61,7 @@
             this.Controls.Add(this.label1);
             this.Name = "FormSucceed";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormSucced";
+            this.Text = "Conversión terminada";
             this.ResumeLayout(false);
             this.PerformLayout();
 

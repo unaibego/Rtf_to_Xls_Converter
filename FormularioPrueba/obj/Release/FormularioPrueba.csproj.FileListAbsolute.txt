@@ -20,3 +20,4 @@ C:\Users\0206032.SENER\source\repos\FormularioPrueba\FormularioPrueba\obj\Releas
 C:\Users\0206032.SENER\source\repos\FormularioPrueba\FormularioPrueba\obj\Release\ConversorRTF.Properties.Resources.resources
 C:\Users\0206032.SENER\source\repos\FormularioPrueba\FormularioPrueba\obj\Release\ConversorRTF.exe
 C:\Users\0206032.SENER\source\repos\FormularioPrueba\FormularioPrueba\obj\Release\ConversorRTF.pdb
+C:\Users\0206032.SENER\source\repos\FormularioPrueba\FormularioPrueba\obj\Release\ConversorRTF.FormSucceed.resources

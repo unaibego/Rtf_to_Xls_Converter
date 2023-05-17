@@ -48,7 +48,7 @@
             this.Controls.Add(this.progressBar1);
             this.Name = "FormPantallaCarga";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Convirtiendo, espere por favor";
+            this.Text = "Convirtiendo, espera por favor";
             this.ResumeLayout(false);
 
         }

@@ -39,7 +39,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(318, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Alguna de las rutas indicadas no es correcta. Revíselas por favor.";
+            this.label1.Text = "Alguna de las rutas indicadas no es correcta. Revísalas por favor.";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // button1

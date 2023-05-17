@@ -11,7 +11,7 @@ namespace FormularioPrueba
     class CopyTable
     {
         private Workbook workbook;
-        private Worksheet worksheet; 
+        public Worksheet worksheet; 
         public int yTable1 = 6;
         public int yTable2 = 6;
 

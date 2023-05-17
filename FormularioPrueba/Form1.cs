@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -67,38 +68,55 @@ namespace FormularioPrueba
             string inputPath = textBox3.Text;
             string outputPath = textBox4.Text;
             string xlsName = textBox5.Text;
+
             CheckErrors checker = new CheckErrors(inputPath, outputPath, xlsName);
             string outFilePath = checker.outFilePath;
-            
+
             if (checker.isCorrect)
             {
+                button6.Enabled = false;
                 string[] files = Directory.GetFiles(inputPath);
                 var frmCarga = new FormPantallaCarga();
+                OpenFiles loader = new OpenFiles(outFilePath);
+                CopyTable copyT = new CopyTable(loader);
+                CopyBody copyB = new CopyBody(loader);
                 frmCarga.Show();
                 await Task.Run(async () =>
                 {
-                    OpenFiles loader = new OpenFiles(outFilePath);
-                    CopyTable copyT = new CopyTable(loader);
-                    CopyBody copyB = new CopyBody(loader);
-                    foreach (var item in files)
+                    try
                     {
-                        if (item.EndsWith(".RTF"))
+                        foreach (var item in files)
                         {
-                            LoadRtf rtfloader = new LoadRtf(item);
-                            CopyAll copyA = new CopyAll(copyB, copyT, rtfloader.tables, rtfloader.paragraphs);
-                            await Task.Delay(1);
+                            if (item.EndsWith(".RTF"))
+                            {
+                                LoadRtf rtfloader = new LoadRtf(item);
+                                CopyAll copyA = new CopyAll(copyB, copyT, rtfloader.tables, rtfloader.paragraphs);
+                                await Task.Delay(1);
+                            }
                         }
                     }
-                    loader.workbook.SaveToFile(loader.outFilePath, ExcelVersion.Version2013); //estos guardados son redundantes pero es para evitar que a veces no se guarde bien
-                    await Task.Delay(5000);
-                    this.Invoke((MethodInvoker)delegate
+                    catch (Exception ex)
                     {
-                        frmCarga.Close();
-                    });
-
+                        var fatalError = new FormLoadError();
+                        fatalError.Show();
+                        Close();
+                    }
                 });
-                var finish = new FormSucceed();
-                finish.Show();
+                if (copyT.yTable1 > 7 && loader.worksheet.Range["A6:X" + (copyT.yTable1 - 1)].Where(c => string.IsNullOrEmpty(c.Value.ToString())).Count() != 0)
+                {
+                    frmCarga.Close();
+                    File.Delete(loader.outFilePath);
+                    button3_ClickAsync(sender, e);
+                }
+                else
+                {
+                    loader.workbook.SaveToFile(loader.outFilePath, ExcelVersion.Version2016); 
+                    frmCarga.Close();
+                    var finish = new FormSucceed();
+                    button6.Enabled = true;
+                    finish.Show();
+
+                }
             } 
         }
 
